@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import arrow from 'imgs/circled-right-2.png';
+import home from 'imgs/homeIcon.png';
 /* components */
 import Header from 'components/Header/Header';
 
@@ -22,6 +23,16 @@ function App() {
 					/>
 				</a>
 			</div>
+			<p className='LandingPage__text'> Want to build your own MYtinerary?</p>
+			<a href='#!' className='LandingPage__link'>
+				Log in
+			</a>
+			<a href='#!' className='LandingPage__link'>
+				Create Account
+			</a>
+			<footer className='LandingPage__footer'>
+				<img src={home} className='LandingPage__home' alt='' />
+			</footer>
 		</div>
 	);
 }
