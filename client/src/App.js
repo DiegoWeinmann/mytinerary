@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import arrow from 'imgs/circled-right-2.png';
+/* components */
+import Header from 'components/Header/Header';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div>
+			<Header />
+			<p className='LandingPage__subtitle'>
+				Find your perfect trip, designed by insiders who know and love their
+				cities.
+			</p>
+			<div className='LandingPage__browse'>
+				<h1>Start browsing</h1>
+				<a className='LandingPage__arrow' href='#!'>
+					<img
+						src={arrow}
+						className='LandingPage__img'
+						alt='go to cities page'
+					/>
+				</a>
+			</div>
+		</div>
+	);
 }
 
 export default App;
