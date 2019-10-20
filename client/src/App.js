@@ -31,7 +31,9 @@ function App() {
 				Create Account
 			</a>
 			<footer className='LandingPage__footer'>
-				<img src={home} className='LandingPage__home' alt='' />
+				<a href='#!' className='LandingPage__home'>
+					<img src={home} alt='' />
+				</a>
 			</footer>
 		</div>
 	);
