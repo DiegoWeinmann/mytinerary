@@ -1,0 +1,37 @@
+{
+	"[html]": {
+		"editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
+	},
+	"workbench.activityBar.visible": false,
+	"breadcrumbs.enabled": true,
+	"search.location": "panel",
+	"window.zoomLevel": 1,
+	"editor.fontSize": 16,
+	"workbench.startupEditor": "newUntitledFile",
+	"workbench.iconTheme": "material-icon-theme",
+	"editor.fontFamily": "'Cascadia Code'",
+	"vim.cursorStylePerMode.insert": "line",
+	"vim.cursorStylePerMode.normal": "block",
+	"vim.insertModeKeyBindings": [
+		{
+			"before": ["j", "j"],
+			"after": ["<Esc>"]
+		}
+	],
+	"material-icon-theme.activeIconPack": "react",
+	"editor.wordWrap": "on",
+	"editor.tabSize": 2,
+	"prettier.jsxSingleQuote": true,
+	"prettier.singleQuote": true,
+	"prettier.useTabs": true,
+	"editor.mouseWheelZoom": true,
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"font-switcher.fontFamily": "Consolas, DejaVu Sans Mono, monospace, 'Cascadia Code'",
+	"font-switcher.enableLivePreview": true,
+	"editor.formatOnSave": true,
+	"workbench.colorCustomizations": {},
+	"editor.fontLigatures": true
+}
