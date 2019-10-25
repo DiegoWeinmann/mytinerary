@@ -33,5 +33,6 @@
 	"font-switcher.enableLivePreview": true,
 	"editor.formatOnSave": true,
 	"workbench.colorCustomizations": {},
-	"editor.fontLigatures": true
+	"editor.fontLigatures": true,
+	"editor.showTabs": false
 }
