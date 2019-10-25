@@ -63,7 +63,7 @@ export const LandingPageSecond = () => {
 				</Row>
 				<Row>
 					<Col>
-						<h3 className='display-5'>Popular Mytineraries</h3>
+						<p className='display-5'>Popular Mytineraries</p>
 						<Carousel />
 					</Col>
 				</Row>

@@ -89,14 +89,18 @@ const Example = props => {
 					<Row>
 						{g.map(image => {
 							return (
-								<Col xs={{ size: 6 }} key={image.alt}>
-									<div style={{ width: '100%', height: '100%' }}>
-										<img
-											src={image.src}
-											alt={image.alt}
-											className='img-fluid'
-										/>
-									</div>
+								<Col
+									xs={{ size: 6 }}
+									key={image.alt}
+									style={{ maxHeight: '5rem' }}
+									className='p-1'
+								>
+									<img
+										src={image.src}
+										alt={image.alt}
+										className='img-fluid w-100 rounded'
+										style={{ height: '4rem' }}
+									/>
 								</Col>
 							);
 						})}
@@ -109,7 +113,7 @@ const Example = props => {
 	return (
 		<Carousel activeIndex={activeIndex} next={next} previous={previous}>
 			<CarouselIndicators
-				items={items}
+				items={items.map(group => ({ src: group[0].src }))}
 				activeIndex={activeIndex}
 				onClickHandler={goToIndex}
 			/>
