@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 /* REACTSTRAP */
 import { Container, Row, Col } from 'reactstrap';
 /* COMPONENTS */
@@ -13,30 +14,33 @@ export const LandingPageFirst = () => {
 		<div>
 			<Header />
 			<p className='LandingPage__subtitle'>
-				Find your perfect trip, designed by insiders who know and love their
-				cities.
+				Find your perfect trip, designed by insiders who know and love
+				their cities.
 			</p>
 			<div className='LandingPage__browse'>
 				<h1> Start browsing </h1>
-				<a className='LandingPage__arrow' href='#!'>
+				<Link className='LandingPage__arrow' to='#!'>
 					<img
 						src={arrow}
 						className='LandingPage__img'
 						alt='go to cities page'
 					/>
-				</a>
+				</Link>
 			</div>
-			<p className='LandingPage__text'> Want to build your own MYtinerary ? </p>
-			<a href='#!' className='LandingPage__link'>
+			<p className='LandingPage__text'>
+				{' '}
+				Want to build your own MYtinerary ?{' '}
+			</p>
+			<Link to='#!' className='LandingPage__link'>
 				Log in
-			</a>
-			<a href='#!' className='LandingPage__link'>
+			</Link>
+			<Link to='#!' className='LandingPage__link'>
 				Create Account
-			</a>
+			</Link>
 			<footer className='LandingPage__footer'>
-				<a href='#!' className='LandingPage__home'>
+				<Link to='#!' className='LandingPage__home'>
 					<img src={home} alt='' />
-				</a>
+				</Link>
 			</footer>
 		</div>
 	);
@@ -51,14 +55,21 @@ export const LandingPageSecond = () => {
 				<Row>
 					<Col xs={{ size: 8, offset: 2 }} className='mt-3'>
 						<p className='text-center'>
-							Find your perfect trip, designed by insiders who know and love
-							their cities.
+							Find your perfect trip, designed by insiders who know
+							and love their cities.
 						</p>
 					</Col>
 					<Col xs={{ size: 6, offset: 3 }}>
-						<a href='#!' className='d-flex justify-content-center '>
-							<img src={arrow} alt='arrow' className='img-fluid w-50' />
-						</a>
+						<Link
+							to='cities'
+							className='d-flex justify-content-center '
+						>
+							<img
+								src={arrow}
+								alt='arrow'
+								className='img-fluid w-50'
+							/>
+						</Link>
 					</Col>
 				</Row>
 				<Row>
