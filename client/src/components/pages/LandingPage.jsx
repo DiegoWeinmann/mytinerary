@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 /* COMPONENTS */
 import Header from 'components/Header/Header';
-import Navbar from 'components/Navbar/Navbar';
 import Carousel from 'components/Carousel/Carousel';
 import arrow from 'imgs/circled-right-2.png';
 import home from 'imgs/homeIcon.png';
@@ -49,7 +48,6 @@ export const LandingPageFirst = () => {
 export const LandingPageSecond = () => {
 	return (
 		<>
-			<Navbar />
 			<Header />
 			<Container>
 				<Row>

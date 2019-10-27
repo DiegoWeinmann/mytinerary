@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+/* reactstrap *********** */
 import {
 	Container,
 	Row,
@@ -7,48 +8,32 @@ import {
 	ListGroup,
 	ListGroupItem
 } from 'reactstrap';
-/* Redux */
+/* Redux ************* */
 import { connect } from 'react-redux';
 import { getAllCities } from 'redux/actions';
 
 class Cities extends React.Component {
-	state = {
-		isLoaded: true,
-		cities: []
-	};
-
 	componentDidMount() {
-		// try {
-		// 	this.setState({ isLoaded: false });
-		// 	const res = await axios.get('/cities/all');
-		// 	console.log(res.data);
-		// 	this.setState({
-		// 		cities: res.data,
-		// 		isLoaded: true
-		// 	});
-		// } catch (error) {
-		// 	console.log(error);
-		// }
 		this.props.getAllCities();
-		this.setState({ cities: this.props.cities });
 	}
+
 	render() {
-		console.log(this.props);
-		const { isLoaded, cities } = this.state;
+		const { cities, isLoaded } = this.props;
+		console.log(isLoaded);
 		return (
 			<Container>
 				<h1 className='text-center'>Cities</h1>
 				<Row>
 					<Col>
 						<ListGroup className='my-2'>
-							{this.props.cities && isLoaded ? (
-								this.props.cities.map((city, i) => (
+							{isLoaded ? (
+								cities.map((city, i) => (
 									<ListGroupItem key={i + city.name}>
 										{city.name} - {city.country}
 									</ListGroupItem>
 								))
 							) : (
-								<h1>loading</h1>
+								<p>loading...</p>
 							)}
 						</ListGroup>
 					</Col>
@@ -58,9 +43,16 @@ class Cities extends React.Component {
 	}
 }
 
+Cities.propTypes = {
+	cities: PropTypes.array.isRequired,
+	getAllCities: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
-	cities: state.cities.cities
+	cities: state.city.cities,
+	isLoaded: state.city.isLoaded
 });
+
 export default connect(
 	mapStateToProps,
 	{ getAllCities }

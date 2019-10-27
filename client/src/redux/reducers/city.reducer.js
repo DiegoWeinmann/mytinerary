@@ -1,7 +1,8 @@
 import { CityActionTypes } from 'redux/types';
 
 const initialState = {
-	cities: []
+	cities: [],
+	isLoaded: true
 };
 
 export default (state = initialState, action) => {
@@ -10,7 +11,13 @@ export default (state = initialState, action) => {
 		case CityActionTypes.GET_ALL_CITIES:
 			return {
 				...state,
-				cities: [...payload]
+				cities: [...payload],
+				isLoaded: true
+			};
+		case CityActionTypes.FETCHING_CITIES:
+			return {
+				...state,
+				isLoaded: false
 			};
 		default:
 			return state;
