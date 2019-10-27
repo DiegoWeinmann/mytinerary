@@ -7,26 +7,33 @@ import {
 	ListGroup,
 	ListGroupItem
 } from 'reactstrap';
+/* Redux */
+import { connect } from 'react-redux';
+import { getAllCities } from 'redux/actions';
 
 class Cities extends React.Component {
 	state = {
 		isLoaded: true,
 		cities: []
 	};
-	async componentDidMount() {
-		try {
-			this.setState({ isLoaded: false });
-			const res = await axios.get('/cities/all');
-			console.log(res.data);
-			this.setState({
-				cities: res.data,
-				isLoaded: true
-			});
-		} catch (error) {
-			console.log(error);
-		}
+
+	componentDidMount() {
+		// try {
+		// 	this.setState({ isLoaded: false });
+		// 	const res = await axios.get('/cities/all');
+		// 	console.log(res.data);
+		// 	this.setState({
+		// 		cities: res.data,
+		// 		isLoaded: true
+		// 	});
+		// } catch (error) {
+		// 	console.log(error);
+		// }
+		this.props.getAllCities();
+		this.setState({ cities: this.props.cities });
 	}
 	render() {
+		console.log(this.props);
 		const { isLoaded, cities } = this.state;
 		return (
 			<Container>
@@ -34,8 +41,8 @@ class Cities extends React.Component {
 				<Row>
 					<Col>
 						<ListGroup className='my-2'>
-							{isLoaded ? (
-								cities.map((city, i) => (
+							{this.props.cities && isLoaded ? (
+								this.props.cities.map((city, i) => (
 									<ListGroupItem key={i + city.name}>
 										{city.name} - {city.country}
 									</ListGroupItem>
@@ -51,4 +58,10 @@ class Cities extends React.Component {
 	}
 }
 
-export default Cities;
+const mapStateToProps = state => ({
+	cities: state.cities.cities
+});
+export default connect(
+	mapStateToProps,
+	{ getAllCities }
+)(Cities);
