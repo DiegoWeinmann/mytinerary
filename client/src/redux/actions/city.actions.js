@@ -10,7 +10,6 @@ export const getAllCities = () => async dispatch => {
 	dispatch(setFetchingCities());
 	try {
 		const res = await axios.get('/cities/all');
-		console.log(res);
 		dispatch({
 			type: CityActionTypes.GET_ALL_CITIES,
 			payload: res.data
@@ -19,3 +18,8 @@ export const getAllCities = () => async dispatch => {
 		console.log(error);
 	}
 };
+
+export const searchCities = text => ({
+	type: CityActionTypes.SEARCH_CITIES,
+	payload: text
+});

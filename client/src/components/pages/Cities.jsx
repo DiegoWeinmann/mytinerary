@@ -8,7 +8,9 @@ import {
 	ListGroup,
 	ListGroupItem
 } from 'reactstrap';
-/* Redux ************* */
+/* components */
+import CitiesFilter from 'components/Cities/CitiesFilter';
+/* redux ************* */
 import { connect } from 'react-redux';
 import { getAllCities } from 'redux/actions';
 
@@ -17,24 +19,39 @@ class Cities extends React.Component {
 		this.props.getAllCities();
 	}
 
+	renderCities = () => {
+		const { cities, filteredCities, search } = this.props;
+		let citiesToRender;
+		if (filteredCities.length === 0 && search === '') {
+			citiesToRender = cities;
+		} else if (filteredCities.length === 0 && search !== '') {
+			return (
+				<Container>
+					<p className='text-center lead'>No matches found</p>
+				</Container>
+			);
+		} else {
+			citiesToRender = filteredCities;
+		}
+		return citiesToRender.map((city, i) => {
+			return (
+				<ListGroupItem key={i}>
+					{city.name} / {city.country}
+				</ListGroupItem>
+			);
+		});
+	};
+
 	render() {
-		const { cities, isLoaded } = this.props;
-		console.log(isLoaded);
+		const { isLoaded } = this.props;
 		return (
 			<Container>
 				<h1 className='text-center'>Cities</h1>
+				<CitiesFilter />
 				<Row>
 					<Col>
 						<ListGroup className='my-2'>
-							{isLoaded ? (
-								cities.map((city, i) => (
-									<ListGroupItem key={i + city.name}>
-										{city.name} - {city.country}
-									</ListGroupItem>
-								))
-							) : (
-								<p>loading...</p>
-							)}
+							{isLoaded ? this.renderCities() : <p>loading...</p>}
 						</ListGroup>
 					</Col>
 				</Row>
@@ -50,6 +67,8 @@ Cities.propTypes = {
 
 const mapStateToProps = state => ({
 	cities: state.city.cities,
+	filteredCities: state.city.filteredCities,
+	search: state.city.search,
 	isLoaded: state.city.isLoaded
 });
 
