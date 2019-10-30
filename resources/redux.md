@@ -172,3 +172,34 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(Component);
 ```
+
+### Async Actions
+
+How does asynchronicity fit into Redux?
+
+Asynchronous API call:
+
+- Start of the call.
+- Moment when you receive an answer.
+
+Each of this two moments require a **change in the application state**, to do that, you need to **dispatch** normal actions that will be processed by reducers synchronously.
+
+### Different actions fired in an API call.
+
+- An action informing the reducers that the request began.
+
+The reducers may handle this action by toggling an `isFetching` flag in the state.
+
+- An action informing the reducers that the request finished succesfully.
+
+The reducers may handle this action by merging the new data into the state and reset `isFetching`.
+
+- An action informing the reducers that the request failed.
+
+The reducers may handle this action by resetting `isFetching`. Alternatively some reducers may want to store the error message of the failed request so that the UI can display it.
+
+```javascript
+{ type: "FETCH_CITIES_REQUEST"} // set isFetching to true,
+{ type: "FETCH_CITIES_FAILURE", payload: error.message},
+{ type: "FETCH_CITIES_SUCCESS", payload: res.data}
+```

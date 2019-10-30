@@ -9,7 +9,7 @@
 	"editor.fontSize": 16,
 	"workbench.startupEditor": "newUntitledFile",
 	"workbench.iconTheme": "material-icon-theme",
-	"editor.fontFamily": "'Cascadia Code'",
+	"editor.fontFamily": "Fira Code, Consolas",
 	"vim.cursorStylePerMode.insert": "line",
 	"vim.cursorStylePerMode.normal": "block",
 	"vim.insertModeKeyBindings": [
@@ -34,5 +34,9 @@
 	"editor.formatOnSave": true,
 	"workbench.colorCustomizations": {},
 	"editor.fontLigatures": true,
-	"editor.showTabs": false
+	"editor.showTabs": false,
+	"editor.lineHeight": 23,
+	"editor.fontWeight": "normal",
+	"editor.autoIndent": true,
+	"breadcrumbs.symbolPath": "off"
 }
