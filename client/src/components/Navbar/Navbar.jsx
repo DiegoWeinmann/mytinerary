@@ -9,6 +9,7 @@ import {
 	NavLink
 } from 'reactstrap';
 import { FaUserCircle } from 'react-icons/fa';
+import DropDownMenu from 'components/DropDownMenu/DropDownMenu';
 
 class myNavbar extends React.Component {
 	state = {
@@ -23,9 +24,16 @@ class myNavbar extends React.Component {
 		return (
 			<div>
 				<Navbar color='faded' light>
-					<NavbarBrand href='/' className='mr-auto'>
-						<FaUserCircle style={{ fontSize: '3rem', color: '#ddd' }} />
-					</NavbarBrand>
+					<div className='mr-auto'>
+						<DropDownMenu>
+							{(setOpen, isOpen) => (
+								<FaUserCircle
+									style={{ fontSize: '3rem', color: '#ddd' }}
+									onClick={() => setOpen(!isOpen)}
+								/>
+							)}
+						</DropDownMenu>
+					</div>
 					<NavbarToggler onClick={this.toggleNavbar} className='mr-2' />
 					<Collapse isOpen={!this.state.collapsed} navbar>
 						<Nav navbar>

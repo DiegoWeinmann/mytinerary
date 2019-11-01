@@ -203,3 +203,60 @@ The reducers may handle this action by resetting `isFetching`. Alternatively som
 { type: "FETCH_CITIES_FAILURE", payload: error.message},
 { type: "FETCH_CITIES_SUCCESS", payload: res.data}
 ```
+
+### Glossary
+
+#### Action
+
+An action is a plain object that represents an intention to change the state. Actions are the only way to get data into the store. All kind of data in the application needs to be eventually be dispatched as actions to the store.
+
+Actions must have a type field that indicates the type of action being performed. Types can de defined as constants and imported from another module. 
+
+An action MUST
+
+- be a plain JavaScript object.
+- have a type property.
+
+An action MAY
+
+- have an error property.
+- have a payload property.
+- have a meta property.
+
+#### Reducer (reducing function)
+
+A Reducer is a function that accepts an accumulation and a value and returns a new accumulation. They are used to reduce a collection of values down to a single value. 
+
+The concept of reducers came from functional programming. 
+
+In Redux, the accumulated value us the state object, and the values beeing accumulated are actions. Reducers calculate a new state given the previous state and an action. Reducers must be **pure functions** that return the exact same output for given inputs. They should also be free of side-effects. 
+
+**DO NOT PUT API CALLS IN REDUCERS**
+
+#### Dispatching Function
+
+A Dispatching function is a function that accepts an action or async action. It may dispatch one or more actions to the store.
+
+**Base dispatch function (without middleware)** 
+
+The base dispatch function always synchronously sends an action to the store´s reducers, along with the previous state returned by the store to calculate a new state. It expects actions to be plain objects ready to be consumed by the reducer.
+
+**Middleware wrapped dispatch function**
+
+Middleware wraps the base dispatch function. It allows to dispatch function to handle async actions in addition to actions. Middleware may transform, delay, ignore, or otherwise iterpret actions or async actions before passing the to the next middleware.
+
+#### Action Creators
+
+
+`type ActionCreater = (...args: any) => Action | AsyncAction`
+
+An action creator is a function that creates an action. An action creator is a factory that creates an action. It may implement some logic to create diferrent actions in certain conditions, for example on API calls.
+
+Calling an action creator only produces an action, but does not dispatch it. You need to call the store dispatch function to dispatch the new created action.
+A bound action creator is a function that creates an action and immediately dispatch its to the store.
+
+If an action creator needs to read the current state, perform an Api call or cause a side effect, like a routing transition, it should return an async action instead of an action. 
+
+#### Async action
+
+An async action is a value that is sent to a dispatching function, but is not yet ready for consumption by the reducer. It wil be transformed by middleware into an action before being sent to the base dispatch() function. 

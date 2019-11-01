@@ -1,7 +1,4 @@
 {
-	"[html]": {
-		"editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
-	},
 	"workbench.activityBar.visible": false,
 	"breadcrumbs.enabled": true,
 	"search.location": "panel",
@@ -9,7 +6,7 @@
 	"editor.fontSize": 16,
 	"workbench.startupEditor": "newUntitledFile",
 	"workbench.iconTheme": "material-icon-theme",
-	"editor.fontFamily": "Fira Code, Consolas",
+	"editor.fontFamily": "Fira Code Light, Consolas",
 	"vim.cursorStylePerMode.insert": "line",
 	"vim.cursorStylePerMode.normal": "block",
 	"vim.insertModeKeyBindings": [
@@ -25,12 +22,10 @@
 	"prettier.singleQuote": true,
 	"prettier.useTabs": true,
 	"editor.mouseWheelZoom": true,
-	"[javascript]": {
+	"[javascript, javascriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"font-switcher.fontFamily": "Consolas, DejaVu Sans Mono, monospace, 'Cascadia Code'",
-	"font-switcher.enableLivePreview": true,
 	"editor.formatOnSave": true,
 	"workbench.colorCustomizations": {},
 	"editor.fontLigatures": true,
@@ -38,5 +33,7 @@
 	"editor.lineHeight": 23,
 	"editor.fontWeight": "normal",
 	"editor.autoIndent": true,
-	"breadcrumbs.symbolPath": "off"
+	"breadcrumbs.symbolPath": "off",
+	"files.autoSave": "afterDelay",
+	"workbench.editor.showTabs": false
 }

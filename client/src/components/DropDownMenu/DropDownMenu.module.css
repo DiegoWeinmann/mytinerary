@@ -1,0 +1,6 @@
+.dropDownMenu {
+	display: flex;
+	position: absolute;
+	z-index: 1;
+	background-color: #eee;
+}
