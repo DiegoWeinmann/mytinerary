@@ -4,9 +4,7 @@
 	"search.location": "panel",
 	"window.zoomLevel": 1,
 	"editor.fontSize": 16,
-	"workbench.startupEditor": "newUntitledFile",
 	"workbench.iconTheme": "material-icon-theme",
-	"editor.fontFamily": "Fira Code Light, Consolas",
 	"vim.cursorStylePerMode.insert": "line",
 	"vim.cursorStylePerMode.normal": "block",
 	"vim.insertModeKeyBindings": [
