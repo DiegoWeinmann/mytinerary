@@ -21,16 +21,16 @@ export default (state = initialState, action) => {
 				...state,
 				isLoaded: false
 			};
-		case CityActionTypes.SEARCH_CITIES:
-			return {
-				...state,
-				filteredCities: state.cities.filter(city => {
-					if (payload === '') return true;
-					const regExp = new RegExp(`^(${payload})+\\w`, 'i');
-					return regExp.test(city.name);
-				}),
-				search: payload
-			};
+		// case CityActionTypes.SEARCH_CITIES:
+		// 	return {
+		// 		...state,
+		// 		filteredCities: state.cities.filter(city => {
+		// 			if (payload === '') return true;
+		// 			const regExp = new RegExp(`^(${payload})+\\w`, 'i');
+		// 			return regExp.test(city.name);
+		// 		}),
+		// 		search: payload
+		// 	};
 		default:
 			return state;
 	}

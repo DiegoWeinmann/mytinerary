@@ -19,7 +19,3 @@ export const getAllCities = () => async dispatch => {
 	}
 };
 
-export const searchCities = text => ({
-	type: CityActionTypes.SEARCH_CITIES,
-	payload: text
-});
