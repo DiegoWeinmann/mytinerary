@@ -1,21 +1,20 @@
-import { CityActionTypes } from "redux/types";
+import { ItineraryActionTypes } from "redux/types";
 
 const initialState = {
-  cities: [],
-  city: {},
+  itineraries: [],
   isLoaded: true
 };
 
 export default (state = initialState, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case CityActionTypes.GET_ALL_CITIES:
+  const { payload } = action;
+  switch (action.type) {
+    case ItineraryActionTypes.GET_ALL_ITINERARIES:
       return {
         ...state,
-        cities: [...payload],
+        itineraries: [...payload],
         isLoaded: true
       };
-    case CityActionTypes.FETCHING_CITIES:
+    case ItineraryActionTypes.FETCHING_ITINERARIES:
       return {
         ...state,
         isLoaded: false

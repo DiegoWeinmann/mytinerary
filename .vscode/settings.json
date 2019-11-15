@@ -15,6 +15,7 @@
     }
   ],
   "material-icon-theme.activeIconPack": "react",
+  "workbench.tree.indent": 16,
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
   "editor.mouseWheelZoom": true,
@@ -26,7 +27,7 @@
   "workbench.colorCustomizations": {},
   "editor.fontLigatures": true,
   "editor.showTabs": false,
-  "editor.lineHeight": 23,
+  "editor.lineHeight": 28,
   "editor.fontWeight": "normal",
   "editor.autoIndent": true,
   "breadcrumbs.symbolPath": "off",

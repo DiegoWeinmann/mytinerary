@@ -1,24 +1,53 @@
 import React from "react";
-import axios from "axios";
+/* react strap */
+import { Container, Row, Col } from "reactstrap";
+/* redux */
+import { connect } from "react-redux";
+import { getAllItineraries } from "redux/actions/itinerary.actions";
+/* components */
+import Mytinerary from "components/Mytineraries/Mytinerary";
+import { Title } from "styled";
 
 class Mytineraries extends React.Component {
   async componentDidMount() {
     const { id } = this.props.match.params;
-    try {
-      const { data } = await axios.get(`/cities/${id}/mytineraries/all`);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    this.props.getAllItineraries(id);
+    console.log(this.props);
   }
 
   render() {
+    const { city } = this.props.location.state || "";
+    const { itineraries } = this.props;
     return (
-      <div>
-        <h1>Mytineraries</h1>
-      </div>
+      <Container fluid={true}>
+        <Row>
+          <Title className="display-4">{city.name}</Title>
+        </Row>
+        <Row className="mt-3">
+          <Col>
+            <p className="lead">Available Mytineraries: </p>
+          </Col>
+        </Row>
+        <Row>
+          {!itineraries ? (
+            <p>Loading...</p>
+          ) : (
+            itineraries.map(itinerary => (
+              <Mytinerary key={itinerary._id} {...itinerary} />
+            ))
+          )}
+        </Row>
+      </Container>
     );
   }
 }
 
-export default Mytineraries;
+const mapStateToProps = state => {
+  return {
+    itineraries: state.itinerary.itineraries,
+    isLoaded: state.itinerary.isLoaded,
+    cities: state.city.cities
+  };
+};
+
+export default connect(mapStateToProps, { getAllItineraries })(Mytineraries);

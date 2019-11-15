@@ -1,6 +1,10 @@
-import { combineReducers } from 'redux';
-import cityReducer from './city.reducer';
+import { combineReducers } from "redux";
+import cityReducer from "./city.reducer";
+import itineraryReducer from "./itinerary.reducer";
 
-export default combineReducers({
-	city: cityReducer
+const rootReducer = combineReducers({
+  city: cityReducer,
+  itinerary: itineraryReducer
 });
+
+export default rootReducer;

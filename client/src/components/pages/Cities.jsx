@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 /* reactstrap *********** */
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 /* components */
@@ -8,7 +9,6 @@ import CitiesFilter from "components/Cities/CitiesFilter";
 /* redux ************* */
 import { connect } from "react-redux";
 import { getAllCities } from "redux/actions";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class Cities extends React.Component {
   state = {
@@ -51,7 +51,12 @@ class Cities extends React.Component {
                 unmountOnExit
               >
                 <ListGroupItem key={city.name}>
-                  <Link to={"/cities/" + city._id}>
+                  <Link
+                    to={{
+                      pathname: `/cities/${city._id}`,
+                      state: { city }
+                    }}
+                  >
                     {city.name} / {city.country}
                   </Link>
                 </ListGroupItem>
