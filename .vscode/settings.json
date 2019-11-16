@@ -1,36 +1,58 @@
 {
-  "workbench.activityBar.visible": false,
-  "breadcrumbs.enabled": true,
-  "search.location": "panel",
-  "window.zoomLevel": 1,
-  "editor.fontSize": 16,
-  "editor.fontFamily": "Fira Code",
-  "workbench.iconTheme": "material-icon-theme",
-  "vim.cursorStylePerMode.insert": "line",
-  "vim.cursorStylePerMode.normal": "block",
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
-    }
-  ],
-  "material-icon-theme.activeIconPack": "react",
-  "workbench.tree.indent": 16,
-  "editor.wordWrap": "on",
-  "editor.tabSize": 2,
-  "editor.mouseWheelZoom": true,
-  "[javascript, javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "workbench.colorCustomizations": {},
-  "editor.fontLigatures": true,
-  "editor.showTabs": false,
-  "editor.lineHeight": 28,
-  "editor.fontWeight": "normal",
-  "editor.autoIndent": true,
-  "breadcrumbs.symbolPath": "off",
-  "files.autoSave": "afterDelay",
-  "workbench.editor.showTabs": false
+	"workbench.activityBar.visible": false,
+	"breadcrumbs.enabled": true,
+	"search.location": "panel",
+	"window.zoomLevel": 2,
+	"editor.fontSize": 16,
+	"workbench.iconTheme": "material-icon-theme",
+	"material-icon-theme.activeIconPack": "react",
+	"workbench.tree.indent": 16,
+	"editor.wordWrap": "on",
+	"editor.tabSize": 2,
+	"editor.mouseWheelZoom": true,
+	"[javascript, javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"workbench.colorCustomizations": {},
+	"editor.fontLigatures": true,
+	"editor.showTabs": false,
+	"editor.lineHeight": 28,
+	"editor.fontWeight": "normal",
+	"editor.autoIndent": true,
+	"breadcrumbs.symbolPath": "off",
+	"files.autoSave": "afterDelay",
+	"workbench.editor.showTabs": false,
+	"font-switcher.enableLivePreview": true,
+	/* Vim config */
+	"vim.scroll": 10,
+	"vim.leader": "<Space>",
+	"vim.insertModeKeyBindings": [
+		{
+			"before": ["j", "j"],
+			"after": ["<Esc>"]
+		}
+	],
+	"vim.normalModeKeyBindingsNonRecursive": [
+		/* J -> go 5 lines down */
+		{
+			"before": ["J"],
+			"after": ["5", "j"]
+		},
+		/* K -> go 5 lines up */
+		{
+			"before": ["K"],
+			"after": ["5", "k"]
+		},
+		/* <Leader> j -> Join lines */
+		{
+			"before": ["<Leader>", "j"],
+			"after": ["J"]
+		}
+	],
+	"vim.cursorStylePerMode.insert": "line",
+	"vim.easymotion": true,
+	"vim.cursorStylePerMode.normal": "block",
+	"vim.cursorStylePerMode.visual": "block-outline"
 }
