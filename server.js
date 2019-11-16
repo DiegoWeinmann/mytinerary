@@ -12,6 +12,7 @@ const port = process.env.PORT || 5000;
 
 /* static content */
 app.use(express.static("public"));
+
 /* GET /cities/all */
 router.route("/cities/all").get(async (req, res) => {
   try {
@@ -23,6 +24,7 @@ router.route("/cities/all").get(async (req, res) => {
   }
 });
 
+/* GET /cities/:id/mytineraries/all */
 router.route("/cities/:id/mytineraries/all").get(async (req, res, next) => {
   const { id } = req.params;
   const itineraries = await ItineraryModel.find({
