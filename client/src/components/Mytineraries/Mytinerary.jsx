@@ -1,11 +1,21 @@
 import React from "react";
+import axios from "axios";
 /* styled */
-import { MtyWrapper, MtyTitle, MtyImage, MtyDetail } from "styled";
+import { MtyWrapper, MtyTitle, MtyImage, MtyDetail, MtyHashtags } from "styled";
 /* reactstrap */
 import { Container, Row, Col } from "reactstrap";
 import { BASE_URL } from "constants/index.js";
 
 class Mytinerary extends React.Component {
+  async componentDidMount() {
+    console.log(this.props);
+    try {
+      const res = await axios.get(`/activities/${this.props._id}`);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   render() {
     const { title, hashtag, profilePic, rating, duration, price } = this.props;
     console.log(this.props);
@@ -21,9 +31,7 @@ class Mytinerary extends React.Component {
                   className="img-fluid"
                 />
               </Row>
-              <Row>
-                <p className="text-center w-100">{profilePic.split(".")[0]}</p>
-              </Row>
+              <Row>{/* <p>{profilePic.split(".")[0]}</p> */}</Row>
             </Col>
             <Col xs="8">
               <Row>
@@ -41,12 +49,9 @@ class Mytinerary extends React.Component {
                 </Col>
               </Row>
               <Row className="mt-3">
-                {hashtag &&
-                  hashtag.map(h => (
-                    <Col xs="4" key={h}>
-                      <MtyDetail center>#{h}</MtyDetail>
-                    </Col>
-                  ))}
+                <MtyHashtags>
+                  {hashtag && hashtag.map(h => <span key={h}>#{h}</span>)}
+                </MtyHashtags>
               </Row>
             </Col>
           </Row>

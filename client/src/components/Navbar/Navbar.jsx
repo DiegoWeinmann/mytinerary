@@ -1,50 +1,58 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
-	Collapse,
-	Navbar,
-	NavbarToggler,
-	Nav,
-	NavItem,
-	NavLink
-} from 'reactstrap';
-import { FaUserCircle } from 'react-icons/fa';
-import DropDownMenu from 'components/DropDownMenu/DropDownMenu';
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
+import { FaUserCircle } from "react-icons/fa";
+import DropDownMenu from "components/DropDownMenu/DropDownMenu";
 
 class myNavbar extends React.Component {
-	state = {
-		collapsed: true
-	};
+  state = {
+    collapsed: true
+  };
 
-	toggleNavbar = () => {
-		this.setState({ collapsed: !this.state.collapsed });
-	};
+  toggleNavbar = () => {
+    this.setState({ collapsed: !this.state.collapsed });
+  };
 
-	render() {
-		return (
-			<div>
-				<Navbar color='faded' light>
-					<div className='mr-auto'>
-						<DropDownMenu>
-							{(setOpen, isOpen) => (
-								<FaUserCircle
-									style={{ fontSize: '3rem', color: '#ddd' }}
-									onClick={() => setOpen(!isOpen)}
-								/>
-							)}
-						</DropDownMenu>
-					</div>
-					<NavbarToggler onClick={this.toggleNavbar} className='mr-2' />
-					<Collapse isOpen={!this.state.collapsed} navbar>
-						<Nav navbar>
-							<NavItem>
-								<NavLink href='#!'>Test link</NavLink>
-							</NavItem>
-						</Nav>
-					</Collapse>
-				</Navbar>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <Navbar color="faded" light>
+          <div className="mr-auto">
+            <DropDownMenu>
+              {(setOpen, isOpen) => (
+                <FaUserCircle
+                  style={{ fontSize: "3rem", color: "#ddd" }}
+                  onClick={() => setOpen(!isOpen)}
+                />
+              )}
+            </DropDownMenu>
+          </div>
+          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Nav navbar onClick={this.toggleNavbar}>
+              <NavItem>
+                <Link className="nav-link" to="/">
+                  Home
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="/cities">
+                  Cities
+                </Link>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
 }
 
 export default myNavbar;

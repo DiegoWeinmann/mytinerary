@@ -25,7 +25,7 @@ class Mytineraries extends React.Component {
         </Row>
         <Row className="mt-3">
           <Col>
-            <p className="lead">Available Mytineraries: </p>
+            <p className="lead text-center">Available Mytineraries </p>
           </Col>
         </Row>
         <Row>

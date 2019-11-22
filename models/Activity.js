@@ -7,12 +7,20 @@ const ActivitySchema = new Schema({
 		ref: 'Itinerary',
 		required: true
 	},
-	title: {
-		type: String,
-		required: true
+	city: {
+		type: Schema.Types.ObjectId,
+		ref: 'City',
+		required: false
 	},
-	image: {
-		type: String
+	details: {
+		type: [{
+			title: { type: String, required: true },
+			activityPic: { type: String, required: false }
+		}],
+		required: false
+	},
+	comments: {
+		type: [String],
 	}
 });
 

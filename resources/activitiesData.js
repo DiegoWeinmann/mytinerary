@@ -9,46 +9,85 @@ async function createActivityData() {
 	// Gaudy in a day
 	const act1 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(gaudiInADayID),
-		title: 'Casa Battlo'
+		details: {
+			title: 'Casa Battlo',
+			activityPic: "#"
+		},
+		comments: ["Great activity", "Awesome!!!!"]
 	});
 
 	const act2 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(gaudiInADayID),
-		title: 'La Pedrera'
+		details: {
+			title: 'La Pedrera',
+			activityPic: "#"
+		},
+		comments: ["Best time of my life", "Not bad!"]
 	});
 
 	const act3 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(gaudiInADayID),
-		title: 'Sagrada Familia'
+		detaiils: {
+			title: 'Sagrada Familia',
+			activityPic: "#"
+		},
+		comments: ["Great activity", "Not good enough", "Very expensive"]
 	});
 
 	const act4 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(gaudiInADayID),
-		title: 'Park Güell'
+		details: {
+			title: 'Park Güell',
+			activityPic: "#"
+		},
+		comments: ["Bad", "Good"]
 	});
 
 	// Tapa Till you Droppa
 	const act5 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(tappaDroppa),
-		title: 'Bar del Pla'
+		details: {
+			title: 'Bar del Pla',
+			activityPic: "#"
+		},
+		comments: ["Good"]
+
 	});
 
 	const act6 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(tappaDroppa),
-		title: 'Tapas la Bona Sord'
+		details: {
+			title: 'Tapas la Bona Sord',
+			activityPic: "#"
+		},
+		comments: ["Very good"]
 	});
 
 	const act7 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(tappaDroppa),
-		title: 'Elsa y Fred'
+		details: {
+			title: 'Elsa y Fred',
+			activityPic: "#"
+		},
+		comments: ["good"]
 	});
 
 	const act8 = ActivityModel({
 		itinerary: mongoose.Types.ObjectId(tappaDroppa),
-		title: 'Bar Barcelona'
+		details: {
+			title: 'Bar Barcelona',
+			activityPic: "#"
+		},
+		comments: ["Bad"]
 	});
 
 	try {
+		await ActivityModel.deleteMany({
+			itineray: mongoose.Types.ObjectId(gaudiInADayID)
+		});
+		await ActivityModel.deleteMany({
+			itineray: mongoose.Types.ObjectId(tappaDroppa)
+		});
 		await act1.save();
 		await act2.save();
 		await act3.save();
