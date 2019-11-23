@@ -1,24 +1,23 @@
 import React from "react";
-import axios from "axios";
 /* styled */
 import { MtyWrapper, MtyTitle, MtyImage, MtyDetail, MtyHashtags } from "styled";
 /* reactstrap */
 import { Container, Row, Col } from "reactstrap";
 import { BASE_URL } from "constants/index.js";
+/* components */
+import ActivityList from "components/Mytineraries/ActivityList";
 
 class Mytinerary extends React.Component {
-  async componentDidMount() {
-    console.log(this.props);
-    try {
-      const res = await axios.get(`/activities/${this.props._id}`);
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   render() {
-    const { title, hashtag, profilePic, rating, duration, price } = this.props;
-    console.log(this.props);
+    const {
+      title,
+      hashtag,
+      profilePic,
+      rating,
+      duration,
+      price,
+      _id
+    } = this.props;
     return (
       <Container className="mt-3">
         <MtyWrapper>
@@ -54,6 +53,9 @@ class Mytinerary extends React.Component {
                 </MtyHashtags>
               </Row>
             </Col>
+          </Row>
+          <Row>
+            <ActivityList itineraryId={_id} />
           </Row>
         </MtyWrapper>
       </Container>

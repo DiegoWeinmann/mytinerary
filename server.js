@@ -15,48 +15,41 @@ const port = process.env.PORT || 5000;
 app.use(express.static("public"));
 
 /* GET /cities/all */
-router
-  .route("/cities/all")
-  .get(async (req, res) => {
-    try {
-      const cities = await CityModel.find();
-      return res.json(cities);
-    } catch (error) {
-      console.log(error);
-      return res.json({ msg: error.message });
-    }
-  });
+router.route("/cities/all").get(async (req, res) => {
+  try {
+    const cities = await CityModel.find();
+    return res.json(cities);
+  } catch (error) {
+    console.log(error);
+    return res.json({ msg: error.message });
+  }
+});
 
 /* GET /cities/:id/mytineraries/all */
-router
-  .route("/cities/:id/mytineraries/all")
-  .get(async (req, res) => {
-    const id = req.params.id;
-    try {
-      const itineraries = await ItineraryModel.find({
-        city: mongoose.Types.ObjectId(id)
-      }).populate("city", "name");
-      res.json(itineraries);
-    } catch (error) {
-      console.error(error);
-    }
-  });
+router.route("/cities/:id/mytineraries/all").get(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const itineraries = await ItineraryModel.find({
+      city: mongoose.Types.ObjectId(id)
+    }).populate("city", "name");
+    res.json(itineraries);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 /* GET /activities/itineraryId */
-router
-  .route("/activities/:itineraryId")
-  .get(async (req, res) => {
-    const itineraryId = req.params.itineraryId;
-    console.log(itineraryId);
-    try {
-      const activities = await ActivityModel.find({
-      });
-      console.log(activities);
-      res.json(activities);
-    } catch (error) {
-      console.log(error);
-    }
-  })
+router.route("/activities/:itineraryId").get(async (req, res) => {
+  const itineraryId = req.params.itineraryId;
+  try {
+    const activities = await ActivityModel.find({
+      itinerary: mongoose.Types.ObjectId(itineraryId)
+    });
+    res.json(activities);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.use("/", router);
 app.listen(port, () => {

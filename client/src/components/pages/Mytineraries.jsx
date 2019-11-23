@@ -12,7 +12,6 @@ class Mytineraries extends React.Component {
   async componentDidMount() {
     const { id } = this.props.match.params;
     this.props.getAllItineraries(id);
-    console.log(this.props);
   }
 
   render() {
