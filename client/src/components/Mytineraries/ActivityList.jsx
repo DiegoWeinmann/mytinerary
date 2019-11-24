@@ -20,14 +20,13 @@ const ActListWrapper = styled.div`
   width: 100%;
   display: flex;
   overflow: scroll;
-
   scroll-snap-type: x mandatory;
   animation: 200ms ${grow} ease;
 `;
 
 class ActivityList extends React.Component {
   state = {
-    show: false
+    show: true
   };
 
   toggleActivities = () => {
@@ -37,10 +36,12 @@ class ActivityList extends React.Component {
   };
 
   componentDidMount() {
+    console.log(this.props.itineraryId);
     this.props.getAllActivities(this.props.itineraryId);
   }
+
   render() {
-    console.log(this.props);
+    console.log(this.props.activities);
     return (
       <>
         <ActivitiesToggler onClick={this.toggleActivities}>

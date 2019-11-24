@@ -5,7 +5,11 @@ import { colors } from "styled";
 const ActWrapper = styled.div`
   flex: 1 0 100%;
   flex: nowrap;
-  background: ${colors.primary[1]};
+  background: linear-gradient(
+    to bottom,
+    ${colors.secondary[0]},
+    ${colors.secondary[1]}
+  );
   color: ${colors.white[0]};
   font-size: 1.5rem;
   min-height: 4rem;
@@ -19,7 +23,6 @@ const ActWrapper = styled.div`
 `;
 
 const ActivityItem = props => {
-  console.log(props);
   return (
     <ActWrapper>
       <div>{props.details.title}</div>

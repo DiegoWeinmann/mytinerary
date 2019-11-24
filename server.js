@@ -43,7 +43,7 @@ router.route("/activities/:itineraryId").get(async (req, res) => {
   const itineraryId = req.params.itineraryId;
   try {
     const activities = await ActivityModel.find({
-      itinerary: mongoose.Types.ObjectId(itineraryId)
+      itinerary: itineraryId
     });
     res.json(activities);
   } catch (error) {

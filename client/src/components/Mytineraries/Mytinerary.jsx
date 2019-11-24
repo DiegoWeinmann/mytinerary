@@ -1,6 +1,13 @@
 import React from "react";
 /* styled */
-import { MtyWrapper, MtyTitle, MtyImage, MtyDetail, MtyHashtags } from "styled";
+import {
+  MtyWrapper,
+  MtyDetailsContainer,
+  MtyTitle,
+  MtyImage,
+  MtyDetail,
+  MtyHashtags
+} from "styled";
 /* reactstrap */
 import { Container, Row, Col } from "reactstrap";
 import { BASE_URL } from "constants/index.js";
@@ -18,6 +25,7 @@ class Mytinerary extends React.Component {
       price,
       _id
     } = this.props;
+    console.log("itinerary Id" + _id);
     return (
       <Container className="mt-3">
         <MtyWrapper>
@@ -30,29 +38,28 @@ class Mytinerary extends React.Component {
                   className="img-fluid"
                 />
               </Row>
-              <Row>{/* <p>{profilePic.split(".")[0]}</p> */}</Row>
             </Col>
             <Col xs="8">
               <Row>
                 <MtyTitle>{title}</MtyTitle>
               </Row>
-              <Row>
-                <Col>
-                  <MtyDetail>likes: {rating} </MtyDetail>
-                </Col>
-                <Col>
-                  <MtyDetail> {duration} hours</MtyDetail>
-                </Col>
-                <Col>
-                  <MtyDetail>$$ {price}</MtyDetail>
-                </Col>
-              </Row>
-              <Row className="mt-3">
-                <MtyHashtags>
-                  {hashtag && hashtag.map(h => <span key={h}>#{h}</span>)}
-                </MtyHashtags>
-              </Row>
             </Col>
+          </Row>
+          <Row>
+            <MtyDetailsContainer>
+              <MtyDetail center>
+                <strong>Likes {rating}</strong>
+              </MtyDetail>
+              <MtyDetail center>
+                {duration} {duration === 1 ? "hour" : "hours"}
+              </MtyDetail>
+              <MtyDetail center>$$ {price}</MtyDetail>
+            </MtyDetailsContainer>
+          </Row>
+          <Row className="mt-3">
+            <MtyHashtags>
+              {hashtag && hashtag.map(h => <span key={h}>#{h}</span>)}
+            </MtyHashtags>
           </Row>
           <Row>
             <ActivityList itineraryId={_id} />
