@@ -19,13 +19,13 @@ class CitiesFilter extends React.Component {
 			<Container>
 				<Form>
 					<FormGroup>
-						<Label for='citiesFilter'>Search:</Label>
 						<Input
 							id='citiesFilter'
 							name='city'
 							value={this.state.search}
 							onChange={this.handleChange}
 							autoComplete='off'
+							placeholder='search...'
 						/>
 					</FormGroup>
 				</Form>
