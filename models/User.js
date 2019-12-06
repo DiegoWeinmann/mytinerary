@@ -13,6 +13,18 @@ const UserModel = new Schema({
   profilePic: {
     type: String,
     required: false
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  country: {
+    type: String,
+    required: false
   }
 });
 
