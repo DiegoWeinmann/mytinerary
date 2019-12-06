@@ -14,14 +14,23 @@ const ItinerarySchema = new Schema({
   profilePic: {
     type: String
   },
+  user: {
+    type: String,
+    required: false
+  },
   rating: {
-    type: Number
+    type: String
   },
   duration: {
-    type: Number
+    type: String
   },
   price: {
-    type: Number
+    type: String,
+    default: "0"
+  },
+  total_price: {
+    type: String,
+    default: "0"
   },
   hashtag: {
     type: [String]

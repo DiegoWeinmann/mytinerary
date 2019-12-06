@@ -1,21 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const CitySchema = new Schema({
-  name: {
+const UserModel = new Schema({
+  email: {
     type: String,
-    lowercase: true,
     required: true
   },
-  country: {
+  password: {
     type: String,
-    lowercase: true,
     required: true
   },
-  img: {
+  profilePic: {
     type: String,
     required: false
   }
 });
 
-module.exports = mongoose.model("City", CitySchema, "cities");
+module.exports = mongoose.model("User", UserModel, "users");

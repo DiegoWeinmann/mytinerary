@@ -10,7 +10,7 @@ const ActivitySchema = new Schema({
   city: {
     type: Schema.Types.ObjectId,
     ref: "City",
-    required: false
+    required: true
   },
   details: {
     type: {
@@ -19,8 +19,20 @@ const ActivitySchema = new Schema({
     },
     required: false
   },
+  duration: {
+    type: String
+  },
+  address: {
+    type: String
+  },
+  price: {
+    type: String
+  },
   comments: {
     type: [String]
+  },
+  summary: {
+    type: String
   }
 });
 
