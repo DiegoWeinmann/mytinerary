@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const URI =
-	'mongodb+srv://diego:1234@mytinerarycluster-nymbe.mongodb.net/test?retryWrites=true&w=majority';
+const config = require('config');
+const URI = config.get('mongoURI');
 
 class Database {
 	constructor() {

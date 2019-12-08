@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 
-const { register } = require('../controllers/auth.controller');
+const { register, login } = require('../controllers/auth.controller');
 
 /* POST /create-new-account */
 router.post(
@@ -25,6 +25,20 @@ router.post(
 			.withMessage('Last Name is required.')
 	],
 	register
+);
+
+router.post(
+	'/login',
+	[
+		check('email')
+			.isEmail()
+			.withMessage('Email is required.'),
+		check('password')
+			.not()
+			.isEmpty()
+			.withMessage('Password is required.')
+	],
+	login
 );
 
 module.exports = router;
