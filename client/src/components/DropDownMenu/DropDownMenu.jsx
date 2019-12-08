@@ -33,10 +33,17 @@ const DropDownMenu = props => {
 			{isOpen && (
 				<DropDownWrapper>
 					<DropDownItem>
-						<Link to="/create-new-account">Create account</Link>
+						<Link
+							to='/create-new-account'
+							onClick={() => setOpen(false)}
+						>
+							Create account
+						</Link>
 					</DropDownItem>
 					<DropDownItem>
-						<Link to="/login">Login</Link>
+						<Link to='/login' onClick={() => setOpen(false)}>
+							Login
+						</Link>
 					</DropDownItem>
 				</DropDownWrapper>
 			)}

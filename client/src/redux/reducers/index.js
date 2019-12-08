@@ -1,4 +1,4 @@
-mport { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import cityReducer from './city.reducer';
 import itineraryReducer from './itinerary.reducer';
 import activityReducer from './activity.reducer';

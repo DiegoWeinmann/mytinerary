@@ -6,6 +6,7 @@ import { ActivitiesToggler } from 'styled';
 /* redux */
 import { connect } from 'react-redux';
 import { getAllActivities } from 'redux/actions/activity.actions';
+
 const grow = keyframes`
   0% {
     height: 0;
@@ -29,21 +30,15 @@ class ActivityList extends React.Component {
 	};
 
 	toggleActivities = () => {
-		this.setState({
-			show: !this.state.show
-		});
+		this.props.getAllActivities(this.props.itineraryId);
+		setTimeout(() => {
+			this.setState({
+				show: !this.state.show
+			});
+		}, 500);
 	};
 
-	componentDidMount() {
-		this.props.getAllActivities(this.props.itineraryId);
-	}
-
 	render() {
-		let activities = [];
-		if (this.props.activities && this.props.isLoaded) {
-			activities = this.props.activities[this.props.itineraryId];
-		}
-
 		return (
 			<>
 				<ActivitiesToggler onClick={this.toggleActivities}>
@@ -51,8 +46,12 @@ class ActivityList extends React.Component {
 				</ActivitiesToggler>
 				{this.state.show && (
 					<ActListWrapper>
-						{activities &&
-							activities.map(activity => (
+						{this.props.activities[this.props.itineraryId] &&
+							this.props.activities[this.props.itineraryId]
+								.isLoaded &&
+							this.props.activities[
+								this.props.itineraryId
+							].activities.map(activity => (
 								<ActivityItem key={activity._id} {...activity} />
 							))}
 					</ActListWrapper>
@@ -67,4 +66,6 @@ const mapStateToProps = state => ({
 	isLoaded: state.activity.isLoaded
 });
 
-export default connect(mapStateToProps, { getAllActivities })(ActivityList);
+export default connect(mapStateToProps, { getAllActivities })(
+	ActivityList
+);

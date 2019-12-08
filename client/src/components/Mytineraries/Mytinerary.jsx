@@ -25,7 +25,7 @@ class Mytinerary extends React.Component {
 			price,
 			_id
 		} = this.props;
-		console.log('itinerary Id' + _id);
+		// console.log('itinerary Id' + _id);
 		return (
 			<Container className='mt-3'>
 				<MtyWrapper>

@@ -1,13 +1,13 @@
 import React from 'react';
-import Form from 'components/FormElements/Form';
+import CreateNewAccountForm from 'components/FormElements/CreateNewAccountForm';
 
 const CreateNewAccount = () => {
-  return (
-    <div>
-      <h1>Create new account</h1>
-      <Form />
-    </div>
-  );
+	return (
+		<div>
+			<h1 className='text-center lead m-3'>Create new account</h1>
+			<CreateNewAccountForm />
+		</div>
+	);
 };
 
 export default CreateNewAccount;

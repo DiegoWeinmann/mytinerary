@@ -28,7 +28,7 @@ const initialState = {
 	lastName: ''
 };
 
-class Form extends React.Component {
+class CreateNewAccountForm extends React.Component {
 	state = {
 		...initialState
 	};
@@ -41,7 +41,7 @@ class Form extends React.Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-    console.log(this.state);
+		console.log(this.state);
 		if (this.state.email !== '' && this.state.password !== '') {
 			this.props.register(this.state);
 			this.setState({ ...initialState });
@@ -52,44 +52,44 @@ class Form extends React.Component {
 		return (
 			<FormWrapper onSubmit={this.handleSubmit}>
 				<FormInput
-					label="email"
-					type="email"
+					label='email'
+					type='email'
 					value={this.state.email}
 					onChange={this.handleChange}
-					name="email"
+					name='email'
 				/>
 				<FormInput
-					label="password"
-					type="password"
+					label='password'
+					type='password'
 					value={this.state.password}
 					onChange={this.handleChange}
-					name="password"
+					name='password'
 				/>
 				<FormInput
-					label="profile pic"
-					type="text"
+					label='profile picture'
+					type='text'
 					value={this.state.profilePic}
 					onChange={this.handleChange}
-					name="profilePic"
+					name='profilePic'
 				/>
 				<FormInput
-					label="first name"
-					type="text"
+					label='first name'
+					type='text'
 					value={this.state.firstName}
 					onChange={this.handleChange}
-					name="firstName"
+					name='firstName'
 				/>
 				<FormInput
-					label="last name"
-					type="text"
+					label='last name'
+					type='text'
 					value={this.state.lastName}
 					onChange={this.handleChange}
-					name="lastName"
+					name='lastName'
 				/>
-				<Button>Create</Button>
+				<Button type='submit'>Create</Button>
 			</FormWrapper>
 		);
 	}
 }
 
-export default connect(null, { register })(Form);
+export default connect(null, { register })(CreateNewAccountForm);
