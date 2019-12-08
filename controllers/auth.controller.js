@@ -1,8 +1,13 @@
 const UserModel = require('../models/User');
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
 
 exports.register = async (req, res) => {
-	console.log(req.body);
+	/* VALIDATION */
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).json({ errors: errors.array() });
+	}
 	const {
 		email,
 		password,
@@ -22,7 +27,7 @@ exports.register = async (req, res) => {
 
 		user = new UserModel();
 		const salt = await bcrypt.genSalt(10);
-		const hashedPassword = await bcrypt.hash(password, salt);
+		const hashedPassword = await bcrypt.hash(String(password), salt);
 
 		if (email) user.email = email;
 		if (hashedPassword) user.password = hashedPassword;
