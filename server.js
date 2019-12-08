@@ -3,6 +3,8 @@ const app = express();
 require('./config/db');
 const passport = require('passport');
 
+const UserModel = require('./models/User');
+
 const port = process.env.PORT || 5000;
 
 /* STATIC CONTENT */
@@ -10,7 +12,23 @@ app.use(express.static('public'));
 
 /* MIDDLEWARE */
 app.use(express.json());
-app.use()
+/* passport middleware */
+app.use(passport.initialize());
+/* passport configuration */
+require('./config/passport');
+
+/* passport test */
+app.get(
+	'/',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		UserModel.findOne({ _id: req.user.id })
+			.then(user => {
+				res.json(user);
+			})
+			.catch(error => res.status(400).json(error));
+	}
+);
 
 /* ******* ROUTES ********* */
 

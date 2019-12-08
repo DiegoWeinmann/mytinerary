@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 
-const { register, login } = require('../controllers/auth.controller');
+const {
+	register,
+	login,
+	loginWithGoogle
+} = require('../controllers/auth.controller');
 
-/* POST /create-new-account */
 router.post(
 	'/create-new-account',
 	[
@@ -40,5 +43,7 @@ router.post(
 	],
 	login
 );
+
+router.get('/users/google', loginWithGoogle);
 
 module.exports = router;

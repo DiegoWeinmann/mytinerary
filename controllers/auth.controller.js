@@ -11,16 +11,10 @@ exports.register = async (req, res) => {
 	if (!errors.isEmpty()) {
 		return res.status(422).json({ errors: errors.array() });
 	}
-	const {
-		email,
-		password,
-		profilePic,
-		firstName,
-		lastName
-	} = req.body;
+	const { email, password, firstName, lastName } = req.body;
 
 	try {
-		let user = UserModel.findOne({
+		let user = await UserModel.findOne({
 			email
 		});
 
@@ -43,7 +37,7 @@ exports.register = async (req, res) => {
 			.status(401)
 			.json({ message: 'User created', user: user });
 	} catch (err) {
-		console.log(err);
+		console.ilog(err);
 	}
 };
 
@@ -93,4 +87,8 @@ exports.login = async (req, res, next) => {
 	} catch (error) {
 		console.log(error);
 	}
+};
+
+exports.loginWithGoogle = async (req, res) => {
+	res.send('Test');
 };
