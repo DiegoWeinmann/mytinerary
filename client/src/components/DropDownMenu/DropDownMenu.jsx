@@ -1,28 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./DropDownMenu.module.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { colors, fadeInLeft } from 'styled';
 
-// const menuStyle = {
-// 	backgroundColor: '#eee',
-// 	width: '3rem',
-// 	height: '3rem',
-// 	position: 'absolute'
-// };
+const DropDownWrapper = styled.div`
+	width: 50%;
+	position: absolute;
+	background: ${colors.primary[1]};
+	top: 100%;
+	left: 0px;
+	min-height: 5rem;
+	border-radius: 10px;
+	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	animation: ${fadeInLeft} 900ms ease 1;
+`;
+const DropDownItem = styled.div`
+	width: 100%;
+	text-decoration: none;
+
+	a {
+		color: white;
+	}
+`;
 
 const DropDownMenu = props => {
-  // const { items } = props;
-  const [isOpen, setOpen] = React.useState(false);
-  return (
-    <>
-      {props.children(setOpen, isOpen)}
-      {isOpen && (
-        <div className={styles.dropDownMenu}>
-          <Link to="/singup">Create account</Link>
-          <Link to="/login">Login</Link>
-        </div>
-      )}
-    </>
-  );
+	const [isOpen, setOpen] = React.useState(false);
+	return (
+		<>
+			{props.children(setOpen, isOpen)}
+			{isOpen && (
+				<DropDownWrapper>
+					<DropDownItem>
+						<Link to="/create-new-account">Create account</Link>
+					</DropDownItem>
+					<DropDownItem>
+						<Link to="/login">Login</Link>
+					</DropDownItem>
+				</DropDownWrapper>
+			)}
+		</>
+	);
 };
 
 export default DropDownMenu;

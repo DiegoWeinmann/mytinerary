@@ -13,3 +13,7 @@ export const ActivityActionTypes = {
   GET_ALL_ACTIVITIES: "GET_ALL_ACTIVITIES",
   FETCHING_ACTIVITIES: "FETCHING_ACTIVITIES"
 }
+
+export const AuthActionTypes = {
+  FETCHING_AUTH: "FETCHING_AUTH"
+};
