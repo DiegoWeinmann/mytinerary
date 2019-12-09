@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 require('./config/db');
 const passport = require('passport');
 
@@ -11,24 +12,25 @@ const port = process.env.PORT || 5000;
 app.use(express.static('public'));
 
 /* MIDDLEWARE */
+app.use(cors());
 app.use(express.json());
 /* passport middleware */
+require('./config/passport');
 app.use(passport.initialize());
 /* passport configuration */
-require('./config/passport');
 
 /* passport test */
-app.get(
-	'/',
-	passport.authenticate('jwt', { session: false }),
-	(req, res) => {
-		UserModel.findOne({ _id: req.user.id })
-			.then(user => {
-				res.json(user);
-			})
-			.catch(error => res.status(400).json(error));
-	}
-);
+// app.get(
+// 	'/',
+// 	passport.authenticate('jwt', { session: false }),
+// 	(req, res) => {
+// 		UserModel.findOne({ _id: req.user.id })
+// 			.then(user => {
+// 				res.json(user);
+// 			})
+// 			.catch(error => res.status(400).json(error));
+// 	}
+// );
 
 /* ******* ROUTES ********* */
 

@@ -1,17 +1,49 @@
 const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+
 const config = require('config');
-const secret = config.get('jwtSecret');
 const UserModel = require('../models/User');
 
 /* JWT stratedy */
-const options = {};
-options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-options.secretOrKey = secret;
+const jwt_options = {};
+jwt_options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+jwt_options.secretOrKey = config.get('jwtSecret');
 
-module.exports = passport.use(
-	new JwtStrategy(options, (jwt_payload, done) => {
+/* GOOGLE strategy */
+const google_options = {};
+google_options.clientID = config.get('googleClientID');
+google_options.clientSecret = config.get('googleClientSecret');
+google_options.callbackURL =
+	'http://localhost:5000/users/google/redirect';
+
+// console.log(jwt_options);
+console.log(google_options);
+
+passport.use(
+	new GoogleStrategy(
+		google_options,
+		(accessToken, refreshToken, profile, done) => {
+			console.log('PASO POR ACA');
+			console.log(profile);
+			UserModel.findOne({
+				googleId: profile.id
+			})
+				.then(user => {
+					if (user) {
+						console.log(user);
+						return done(null, user);
+					}
+					return done(null, false);
+				})
+				.catch(err => console.log(err));
+		}
+	)
+);
+
+passport.use(
+	new JwtStrategy(jwt_options, (jwt_payload, done) => {
 		UserModel.findById(jwt_payload.id)
 			.then(user => {
 				if (user) {

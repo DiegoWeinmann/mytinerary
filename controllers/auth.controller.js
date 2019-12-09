@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const secret = config.get('jwtSecret');
 const { validationResult } = require('express-validator');
+const passport = require('passport');
 
 exports.register = async (req, res) => {
 	/* VALIDATION */
@@ -87,8 +88,4 @@ exports.login = async (req, res, next) => {
 	} catch (error) {
 		console.log(error);
 	}
-};
-
-exports.loginWithGoogle = async (req, res) => {
-	res.send('Test');
 };

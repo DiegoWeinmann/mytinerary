@@ -7,7 +7,12 @@ const CreateNewAccount = () => {
 		<div>
 			<h1 className='text-center lead m-3'>Create new account</h1>
 			<CreateNewAccountForm />
-			<Link to='http://localhost:5000/users/google'>GOOGLE</Link>
+			<a
+				className='btn btn-success '
+				href='http://localhost:5000/users/google'
+			>
+				GOOGLE
+			</a>
 		</div>
 	);
 };

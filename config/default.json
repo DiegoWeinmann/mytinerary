@@ -1,4 +1,6 @@
 {
 	"mongoURI": "mongodb+srv://diego:1234@mytinerarycluster-nymbe.mongodb.net/test?retryWrites=true&w=majority",
-	"jwtSecret": "my_secret"
+	"jwtSecret": "my_secret",
+	"googleClientID": "736610413383-rhi3si5nasgmj1me5mh7glnejueuvpna.apps.googleusercontent.com",
+	"googleClientSecret": "aFyalod1LMPq3iPMCxahO63b"
 }

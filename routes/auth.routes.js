@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
+const passport = require('passport');
 
 const {
 	register,
 	login,
-	loginWithGoogle
+	loginWithGoogle,
+	loginWithGoogleRedirect
 } = require('../controllers/auth.controller');
 
 router.post(
@@ -44,6 +46,19 @@ router.post(
 	login
 );
 
-router.get('/users/google', loginWithGoogle);
+router.get(
+	'/users/google',
+	passport.authenticate('google', { scope: ['profile'] })
+);
+
+router.get(
+	'/users/google/redirect',
+	passport.authenticate('google', {
+		failureRedirect: 'http://localhost:3000/login'
+	}),
+	(req, res) => {
+		return res.redirect('http://localhost:3000/');
+	}
+);
 
 module.exports = router;
