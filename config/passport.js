@@ -24,20 +24,32 @@ console.log(google_options);
 passport.use(
 	new GoogleStrategy(
 		google_options,
-		(accessToken, refreshToken, profile, done) => {
+		async (accessToken, refreshToken, profile, done) => {
 			console.log('PASO POR ACA');
+			console.log(accessToken);
 			console.log(profile);
-			UserModel.findOne({
-				googleId: profile.id
-			})
-				.then(user => {
-					if (user) {
-						console.log(user);
-						return done(null, user);
-					}
-					return done(null, false);
-				})
-				.catch(err => console.log(err));
+
+			try {
+				let user = await UserModel.findOne({
+					googleId: profile.id
+				});
+
+				if (user) {
+					return done(false, user);
+				}
+
+				user = new UserModel({
+					email: profile.emails[0].value,
+					googleId: profile.id,
+					firstName: profile.name.givenName,
+					lastName: profile.name.familyName
+				});
+				await user.save();
+				return done(false, user);
+			} catch (error) {
+				done(error, false);
+				console.log(error);
+			}
 		}
 	)
 );

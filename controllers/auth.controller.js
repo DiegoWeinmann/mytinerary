@@ -89,3 +89,20 @@ exports.login = async (req, res, next) => {
 		console.log(error);
 	}
 };
+
+exports.loginWithGoogle = (req, res) => {
+	const { user } = req;
+	console.log(user);
+	if (!user) {
+		return res.status(401).json({ message: 'Bad credentials.' });
+	}
+	/* create token */
+	const payload = {
+		id: user.id,
+		username: user.email,
+		profilePic: user.profilePic
+	};
+	const options = { expiresIn: 3600 };
+	const token = jwt.sign(payload, secret, options);
+	res.redirect(`http://localhost:3000/?t=${token}`);
+};

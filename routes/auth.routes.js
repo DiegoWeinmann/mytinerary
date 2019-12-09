@@ -6,8 +6,7 @@ const passport = require('passport');
 const {
 	register,
 	login,
-	loginWithGoogle,
-	loginWithGoogleRedirect
+	loginWithGoogle
 } = require('../controllers/auth.controller');
 
 router.post(
@@ -48,17 +47,16 @@ router.post(
 
 router.get(
 	'/users/google',
-	passport.authenticate('google', { scope: ['profile'] })
+	passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 router.get(
 	'/users/google/redirect',
 	passport.authenticate('google', {
-		failureRedirect: 'http://localhost:3000/login'
+		failureRedirect: 'http://localhost:3000/login',
+		session: false
 	}),
-	(req, res) => {
-		return res.redirect('http://localhost:3000/');
-	}
+	loginWithGoogle
 );
 
 module.exports = router;
