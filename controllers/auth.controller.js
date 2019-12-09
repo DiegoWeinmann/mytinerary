@@ -92,6 +92,7 @@ exports.login = async (req, res, next) => {
 
 exports.loginWithGoogle = (req, res) => {
 	const { user } = req;
+	console.log('USER*****************');
 	console.log(user);
 	if (!user) {
 		return res.status(401).json({ message: 'Bad credentials.' });
@@ -103,6 +104,10 @@ exports.loginWithGoogle = (req, res) => {
 		profilePic: user.profilePic
 	};
 	const options = { expiresIn: 3600 };
-	const token = jwt.sign(payload, secret, options);
-	res.redirect(`http://localhost:3000/?t=${token}`);
+	const token = encodeURIComponent(
+		jwt.sign(payload, secret, options)
+	);
+	res.redirect(
+		`http://localhost:3000/?token=${token}&${queryParams}`
+	);
 };
