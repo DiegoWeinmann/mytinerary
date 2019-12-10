@@ -18,9 +18,6 @@ google_options.clientSecret = config.get('googleClientSecret');
 google_options.callbackURL =
 	'http://localhost:5000/users/google/redirect';
 
-// console.log(jwt_options);
-console.log(google_options);
-
 passport.use(
 	new GoogleStrategy(
 		google_options,

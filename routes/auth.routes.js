@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 const passport = require('passport');
+const auth = require('../middleware/auth');
 
 const {
 	register,
 	login,
-	loginWithGoogle
+	loginWithGoogle,
+	getAuthenticatedUser
 } = require('../controllers/auth.controller');
 
 router.post(
@@ -58,5 +60,7 @@ router.get(
 	}),
 	loginWithGoogle
 );
+
+router.route('/users/authenticated').get(auth, getAuthenticatedUser);
 
 module.exports = router;

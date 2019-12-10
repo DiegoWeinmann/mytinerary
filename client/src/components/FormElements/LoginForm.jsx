@@ -1,6 +1,9 @@
 import React from 'react';
 import FormInput from 'components/FormElements/FormInput';
 import styled from 'styled-components';
+/* redux */
+import { connect } from 'react-redux';
+import { login } from 'redux/actions/auth.actions';
 
 const FormWrapper = styled.form`
 	width: 90%;
@@ -36,6 +39,7 @@ class LoginForm extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		console.log(this.state);
+		this.props.login(this.state);
 	};
 
 	render() {
@@ -61,4 +65,4 @@ class LoginForm extends React.Component {
 	}
 }
 
-export default LoginForm;
+export default connect(null, { login })(LoginForm);

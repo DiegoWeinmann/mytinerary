@@ -38,7 +38,7 @@ exports.register = async (req, res) => {
 			.status(401)
 			.json({ message: 'User created', user: user });
 	} catch (err) {
-		console.ilog(err);
+		console.log(err);
 	}
 };
 
@@ -73,9 +73,11 @@ exports.login = async (req, res, next) => {
 
 		/* user has credentials to log in -> Create TOKEN */
 		const payload = {
-			id: user.id,
-			username: user.email,
-			profilePic: user.profilePic
+			user: {
+				id: user.id,
+				email: user.email,
+				profilePic: user.profilePic
+			}
 		};
 
 		const options = { expiresIn: 3600 };
@@ -92,22 +94,40 @@ exports.login = async (req, res, next) => {
 
 exports.loginWithGoogle = (req, res) => {
 	const { user } = req;
-	console.log('USER*****************');
-	console.log(user);
 	if (!user) {
 		return res.status(401).json({ message: 'Bad credentials.' });
 	}
 	/* create token */
 	const payload = {
-		id: user.id,
-		username: user.email,
-		profilePic: user.profilePic
+		user: {
+			id: user.id,
+			email: user.email,
+			profilePic: user.profilePic
+		}
 	};
 	const options = { expiresIn: 3600 };
 	const token = encodeURIComponent(
 		jwt.sign(payload, secret, options)
 	);
-	res.redirect(
-		`http://localhost:3000/?token=${token}&${queryParams}`
-	);
+	const firstName = user.firstName;
+	const lastName = user.lastName;
+	res.redirect(`http://localhost:3000/?token=${token}`);
+};
+
+exports.getAuthenticatedUser = async (req, res) => {
+	console.log(req.user);
+	const { user } = req;
+	if (!user) {
+		return res.status(401).json({ message: 'Unauthorized.' });
+	}
+
+	try {
+		let userData = await UserModel.findById(user.id).select(
+			'-password'
+		);
+		console.log(userData);
+		return res.status(200).json(userData);
+	} catch (error) {
+		console.log(error);
+	}
 };

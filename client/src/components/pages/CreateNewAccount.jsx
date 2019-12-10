@@ -1,6 +1,5 @@
 import React from 'react';
 import CreateNewAccountForm from 'components/FormElements/CreateNewAccountForm';
-import { Link } from 'react-router-dom';
 
 const CreateNewAccount = () => {
 	return (

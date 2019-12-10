@@ -11,7 +11,9 @@ import arrow from 'imgs/circled-right-2.png';
 export default props => {
 	const query = new URLSearchParams(props.location.search);
 	const token = decodeURIComponent(query.get('token'));
-	console.log(token);
+	if (token) {
+		localStorage.setItem('token', JSON.stringify(token));
+	}
 	return (
 		<>
 			<Header />

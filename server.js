@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 require('./config/db');
 const passport = require('passport');
+const auth = require('./middleware/auth');
 
 const UserModel = require('./models/User');
 
@@ -19,21 +20,7 @@ require('./config/passport');
 app.use(passport.initialize());
 /* passport configuration */
 
-/* passport test */
-// app.get(
-// 	'/',
-// 	passport.authenticate('jwt', { session: false }),
-// 	(req, res) => {
-// 		UserModel.findOne({ _id: req.user.id })
-// 			.then(user => {
-// 				res.json(user);
-// 			})
-// 			.catch(error => res.status(400).json(error));
-// 	}
-// );
-
 /* ******* ROUTES ********* */
-
 /* CITY ROUTES */
 app.use('/', require('./routes/city.routes'));
 /* ITINERARY ROUTES */
@@ -42,6 +29,11 @@ app.use('/', require('./routes/itinerary.routes'));
 app.use('/', require('./routes/activity.routes'));
 /* AUTH ROUTES */
 app.use('/', require('./routes/auth.routes'));
+
+app.get('/test', auth, (req, res) => {
+	console.log(req.user);
+	res.send('TEST REACHED');
+});
 
 app.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
