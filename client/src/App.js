@@ -14,29 +14,44 @@ import CreateNewAccount from 'components/pages/CreateNewAccount';
 import Mytineraries from 'components/pages/Mytineraries';
 /* components */
 import Navbar from 'components/Navbar/Navbar';
+/* redux */
+import { connect } from 'react-redux';
+import { getAuthenticatedUser } from 'redux/actions/auth.actions';
 
-function App() {
-	// if (localStorage.getItem('token')) {
-	// 	const token = JSON.parse(localStorage.getItem('token'));
-	// 	console.log('from localStorage');
-	// 	console.log(token);
-	// }
-
-	return (
-		<Router>
-			<Navbar />
-			<Switch>
-				<Route exact path='/' component={LandingPage} />
-				<Route exact path='/cities/:id' component={Mytineraries} />
-				<Route exact path='/cities' component={Cities} />
-				<Route path='/login' component={Login} />
-				<Route
-					path='/create-new-account'
-					component={CreateNewAccount}
-				/>
-			</Switch>
-		</Router>
-	);
+if (localStorage.getItem('token')) {
+	setAuthToken(localStorage.getItem('token'));
 }
 
-export default App;
+class App extends React.Component {
+	componentDidMount() {
+		console.log(this.props.token);
+		this.props.getAuthenticatedUser();
+	}
+
+	render() {
+		return (
+			<Router>
+				<Navbar />
+				<Switch>
+					<Route exact path='/' component={LandingPage} />
+					<Route exact path='/cities/:id' component={Mytineraries} />
+					<Route exact path='/cities' component={Cities} />
+					<Route path='/login' component={Login} />
+					<Route
+						path='/create-new-account'
+						component={CreateNewAccount}
+					/>
+				</Switch>
+			</Router>
+		);
+	}
+}
+
+const mapStateToProps = state => ({
+	user: state.auth.user,
+	token: state.auth.token
+});
+
+export default connect(mapStateToProps, { getAuthenticatedUser })(
+	App
+);

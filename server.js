@@ -30,11 +30,6 @@ app.use('/', require('./routes/activity.routes'));
 /* AUTH ROUTES */
 app.use('/', require('./routes/auth.routes'));
 
-app.get('/test', auth, (req, res) => {
-	console.log(req.user);
-	res.send('TEST REACHED');
-});
-
 app.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
 });

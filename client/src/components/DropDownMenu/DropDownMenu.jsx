@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, fadeInLeft } from 'styled';
+/* redux */
+import { connect } from 'react-redux';
+import { logout } from 'redux/actions/auth.actions';
 
 const DropDownWrapper = styled.div`
 	width: 50%;
@@ -45,10 +48,21 @@ const DropDownMenu = props => {
 							Login
 						</Link>
 					</DropDownItem>
+					<DropDownItem>
+						<Link
+							to='/'
+							onClick={() => {
+								props.logout();
+								setOpen(false);
+							}}
+						>
+							Logout
+						</Link>
+					</DropDownItem>
 				</DropDownWrapper>
 			)}
 		</>
 	);
 };
 
-export default DropDownMenu;
+export default connect(null, { logout })(DropDownMenu);

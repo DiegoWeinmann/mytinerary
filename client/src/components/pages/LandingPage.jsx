@@ -8,11 +8,12 @@ import Carousel from 'components/Carousel/Carousel';
 import arrow from 'imgs/circled-right-2.png';
 //import home from 'imgs/homeIcon.png';
 
-export default props => {
+const LandingPage = props => {
 	const query = new URLSearchParams(props.location.search);
-	const token = decodeURIComponent(query.get('token'));
-	if (token) {
+	const token = query.get('token');
+	if (token !== null) {
 		localStorage.setItem('token', JSON.stringify(token));
+		props.history.push('/');
 	}
 	return (
 		<>
@@ -48,3 +49,5 @@ export default props => {
 		</>
 	);
 };
+
+export default LandingPage;

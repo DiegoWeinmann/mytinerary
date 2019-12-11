@@ -4,6 +4,7 @@ import styled from 'styled-components';
 /* redux */
 import { connect } from 'react-redux';
 import { login } from 'redux/actions/auth.actions';
+import { Redirect } from 'react-router';
 
 const FormWrapper = styled.form`
 	width: 90%;
@@ -43,6 +44,9 @@ class LoginForm extends React.Component {
 	};
 
 	render() {
+		if(this.props.isAuthenticated) {
+			return <Redirect to="/" />
+		}
 		return (
 			<FormWrapper onSubmit={this.handleSubmit}>
 				<FormInput
@@ -65,4 +69,8 @@ class LoginForm extends React.Component {
 	}
 }
 
-export default connect(null, { login })(LoginForm);
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(LoginForm);

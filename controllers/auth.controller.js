@@ -2,9 +2,7 @@ const UserModel = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const secret = config.get('jwtSecret');
 const { validationResult } = require('express-validator');
-const passport = require('passport');
 
 exports.register = async (req, res) => {
 	/* VALIDATION */
@@ -18,7 +16,7 @@ exports.register = async (req, res) => {
 		let user = await UserModel.findOne({
 			email
 		});
-
+		console.log(user);
 		/* User allreay exists */
 		if (user) {
 			return res.status(403).json({ message: 'User already exists' });
@@ -35,7 +33,7 @@ exports.register = async (req, res) => {
 
 		await user.save();
 		return res
-			.status(401)
+			.status(200)
 			.json({ message: 'User created', user: user });
 	} catch (err) {
 		console.log(err);
@@ -79,8 +77,8 @@ exports.login = async (req, res, next) => {
 				profilePic: user.profilePic
 			}
 		};
-
 		const options = { expiresIn: 3600 };
+		const secret = config.get('jwtSecret');
 		const token = jwt.sign(payload, secret, options);
 
 		return res.status(200).json({
@@ -106,11 +104,12 @@ exports.loginWithGoogle = (req, res) => {
 		}
 	};
 	const options = { expiresIn: 3600 };
-	const token = encodeURIComponent(
-		jwt.sign(payload, secret, options)
-	);
-	const firstName = user.firstName;
-	const lastName = user.lastName;
+	const secret = config.get('jwtSecret');
+	console.log('GOOGLE TOKEN');
+	console.log(secret);
+	console.log(payload);
+	const token = jwt.sign(payload, secret, options);
+	console.log(token);
 	res.redirect(`http://localhost:3000/?token=${token}`);
 };
 

@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import { FaUserCircle } from 'react-icons/fa';
 import DropDownMenu from 'components/DropDownMenu/DropDownMenu';
+import { connect } from 'react-redux';
 
 class myNavbar extends React.Component {
 	state = {
@@ -32,6 +33,11 @@ class myNavbar extends React.Component {
 								/>
 							)}
 						</DropDownMenu>
+						{this.props.isAuthenticated && this.props.user && (
+							<span className='ml-2' style={{ fontSize: '.5rem' }}>
+								{this.props.user.email}
+							</span>
+						)}
 					</div>
 					<NavbarToggler
 						onClick={this.toggleNavbar}
@@ -62,4 +68,9 @@ class myNavbar extends React.Component {
 	}
 }
 
-export default myNavbar;
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated,
+	user: state.auth.user
+});
+
+export default connect(mapStateToProps)(myNavbar);
