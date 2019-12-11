@@ -28,7 +28,8 @@ const initialState = {
 
 class LoginForm extends React.Component {
 	state = {
-		...initialState
+		...initialState,
+		redirect: false
 	};
 
 	handleChange = e => {
@@ -43,9 +44,16 @@ class LoginForm extends React.Component {
 		this.props.login(this.state);
 	};
 
+	componentDidUpdate(prevProps) {
+		console.log(prevProps);
+		if (prevProps.isAuthenticated !== this.props.isAuthenticated) {
+			this.setState({ redirect: true });
+		}
+	}
+
 	render() {
-		if(this.props.isAuthenticated) {
-			return <Redirect to="/" />
+		if (this.state.redirect) {
+			return <Redirect to='/' />;
 		}
 		return (
 			<FormWrapper onSubmit={this.handleSubmit}>

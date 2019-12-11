@@ -34,7 +34,6 @@ export const login = user => async dispatch => {
 				type: AuthActionTypes.LOGIN_SUCCESS,
 				payload: res.data.token
 			});
-			dispatch(getAuthenticatedUser());
 		}
 	} catch (error) {
 		console.log(error);
