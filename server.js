@@ -31,5 +31,5 @@ app.use('/', require('./routes/activity.routes'));
 app.use('/', require('./routes/auth.routes'));
 
 app.listen(port, () => {
-	console.log(`Server listening on port ${port}`);
+  console.log(`Server listening on port ${port}`);
 });
