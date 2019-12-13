@@ -3,9 +3,6 @@ const app = express();
 const cors = require('cors');
 require('./config/db');
 const passport = require('passport');
-const auth = require('./middleware/auth');
-
-const UserModel = require('./models/User');
 
 const port = process.env.PORT || 5000;
 

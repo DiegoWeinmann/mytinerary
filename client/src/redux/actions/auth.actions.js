@@ -6,11 +6,14 @@ const setFetchingAuth = () => ({
   type: AuthActionTypes.FETCHING_AUTH
 });
 
-export const register = user => async dispatch => {
+export const register = (user, history) => async dispatch => {
   dispatch(setFetchingAuth());
   try {
     const res = await axios.post('/create-new-account', { ...user }, headers);
     console.log(res.data);
+    if (history) {
+      history.push('/login');
+    }
   } catch (error) {
     console.log(error);
     if (error.message) {
