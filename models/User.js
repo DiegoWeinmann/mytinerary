@@ -32,7 +32,17 @@ const UserModel = new Schema({
 		type: String,
 		required: false
 	},
-	favourites: {
+	favItineraries: {
+		type: [Schema.Types.ObjectId],
+		ref: 'Itinerary',
+		required: false
+	},
+	favActivities: {
+		type: [Schema.Types.ObjectId],
+		ref: 'Activity',
+		required: false
+	},
+	likes: {
 		type: [Schema.Types.ObjectId],
 		ref: 'Itinerary',
 		required: false
