@@ -26,7 +26,9 @@ app.use('/', require('./routes/itinerary.routes'));
 app.use('/', require('./routes/activity.routes'));
 /* AUTH ROUTES */
 app.use('/', require('./routes/auth.routes'));
+/* FAVOURITES ROUTES */
+app.use('/', require('./routes/favourites.routes'));
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+	console.log(`Server listening on port ${port}`);
 });

@@ -6,6 +6,7 @@
 	"scripts": {
 		"start": "node server.js",
 		"server": "nodemon server.js",
+		"server:debug": "set DEBUG=express:* & nodemon server.js",
 		"dev": "concurrently \"npm run server\" \"npm start --prefix client\"",
 		"client": "npm start --prefix client"
 	},

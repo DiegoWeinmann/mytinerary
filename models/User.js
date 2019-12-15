@@ -31,6 +31,11 @@ const UserModel = new Schema({
 	googleId: {
 		type: String,
 		required: false
+	},
+	favourites: {
+		type: [Schema.Types.ObjectId],
+		ref: 'Itinerary',
+		required: false
 	}
 });
 
