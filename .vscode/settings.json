@@ -2,7 +2,7 @@
 	"workbench.activityBar.visible": false,
 	"breadcrumbs.enabled": true,
 	"search.location": "panel",
-	"window.zoomLevel": 0,
+	"window.zoomLevel": 1,
 	"editor.fontSize": 15,
 	"workbench.iconTheme": "material-icon-theme",
 	"material-icon-theme.activeIconPack": "react",
@@ -22,12 +22,11 @@
 	"editor.fontWeight": "normal",
 	"editor.autoIndent": true,
 	"breadcrumbs.symbolPath": "off",
-	"files.autoSave": "afterDelay",
 	"workbench.editor.showTabs": false,
 	"font-switcher.enableLivePreview": true,
 	/* VIM CONFIG */
 	"vim.scroll": 10,
-	"vim.leader": "<Space>",
+	"vim.leader": ",",
 	"vim.insertModeKeyBindings": [
 		{
 			"before": ["j", "j"],
@@ -43,6 +42,23 @@
 		}
 	],
 	"vim.normalModeKeyBindingsNonRecursive": [
+		/* Bookmarks */
+		{
+			"before": ["<leader>", "m"],
+			"commands": ["bookmarks.toggle"]
+		},
+		{
+			"before": ["<leader>", "b"],
+			"commands": ["bookmarks.listFromAllFiles"]
+		},
+		{
+			"before": ["<leader>", "a"],
+			"commands": ["bookmarks.jumpToPrevious"]
+		},
+		{
+			"before": ["<leader>", "s"],
+			"commands": ["bookmarks.jumpToNext"]
+		},
 		/* J -> go 5 lines down */
 		{
 			"before": ["j"],
@@ -80,6 +96,7 @@
 	"vim.cursorStylePerMode.insert": "line",
 	"vim.easymotion": true,
 	"vim.cursorStylePerMode.normal": "block",
-	"vim.cursorStylePerMode.visual": "block-outline"
+	"vim.cursorStylePerMode.visual": "block-outline",
 	/* end vim config */
+	"bookmarks.navigateThroughAllFiles": true
 }

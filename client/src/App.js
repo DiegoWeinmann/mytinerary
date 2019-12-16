@@ -6,20 +6,26 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import { setAuthToken } from './axios/axios.config';
-/* pages */
+/* PAGES */
 import Cities from 'components/pages/Cities';
 import LandingPage from 'components/pages/LandingPage';
 import Login from 'components/pages/Login';
 import CreateNewAccount from 'components/pages/CreateNewAccount';
 import Mytineraries from 'components/pages/Mytineraries';
-/* components */
+/* COMPONENTS */
 import Navbar from 'components/Navbar/Navbar';
+/* REDUX */
+import { connect } from 'react-redux';
+import { getAuthenticatedUser } from 'redux/actions/user.actions';
 
 if (localStorage.getItem('token')) {
 	setAuthToken(localStorage.getItem('token'));
 }
 
 class App extends React.Component {
+	componentDidMount() {
+		this.props.getAuthenticatedUser();
+	}
 	render() {
 		return (
 			<Router>
@@ -39,4 +45,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default connect(null, { getAuthenticatedUser })(App);

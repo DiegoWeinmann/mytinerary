@@ -1,10 +1,10 @@
 import React from 'react';
-/* react strap */
+/* REACTSTRAP */
 import { Container, Row, Col } from 'reactstrap';
-/* redux */
+/* REDUX */
 import { connect } from 'react-redux';
 import { getAllItineraries } from 'redux/actions/itinerary.actions';
-/* components */
+/* COMPONENTS */
 import Mytinerary from 'components/Mytineraries/Mytinerary';
 import { Title } from 'styled';
 

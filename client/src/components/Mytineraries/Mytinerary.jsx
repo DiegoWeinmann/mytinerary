@@ -1,41 +1,57 @@
 import React from 'react';
-/* styled */
+/* STYLED */
 import {
 	MtyWrapper,
+	MtyFavourite,
 	MtyDetailsContainer,
 	MtyTitle,
-	MtyImage,
+	// MtyImage,
 	MtyDetail,
 	MtyHashtags
 } from 'styled';
-/* reactstrap */
+import { MdStar } from 'react-icons/md';
+/* REACTSTRAP */
 import { Container, Row, Col } from 'reactstrap';
-import { BASE_URL } from 'constants/index.js';
-/* components */
+// import { BASE_URL } from 'constants/index.js';
+/* COMPONENTS */
 import ActivityList from 'components/Mytineraries/ActivityList';
+/* REDUX */
+import { connect } from 'react-redux';
+import { addItineraryToUserFavs } from 'redux/actions/user.actions';
 
 class Mytinerary extends React.Component {
 	render() {
 		const {
 			title,
 			hashtag,
-			profilePic,
 			rating,
 			duration,
 			price,
-			_id
+			_id,
+			user
 		} = this.props;
-		// console.log('itinerary Id' + _id);
+		const isFavourite =
+			user && user.favItineraries.includes(_id) ? 1 : 0;
 		return (
 			<Container className='mt-3'>
-				<MtyWrapper>
+				<MtyWrapper isfavourite={isFavourite}>
+					{user && (
+						<MtyFavourite
+							isfavourite={isFavourite}
+							onClick={() => {
+								this.props.addItineraryToUserFavs(user._id, _id);
+							}}
+						>
+							<MdStar />
+						</MtyFavourite>
+					)}
 					<Row>
 						<Col xs='4'>
-							<MtyImage
+							{/* <MtyImage
 								src={`${BASE_URL}/images/${profilePic}`}
 								alt=''
 								className='img-fluid w-75'
-							/>
+							/> */}
 						</Col>
 						<Col xs='8'>
 							<Row>
@@ -68,4 +84,11 @@ class Mytinerary extends React.Component {
 	}
 }
 
-export default Mytinerary;
+const mapStateToProps = state => ({
+	user: state.user.user,
+	isAuthenticated: state.user.isAuthenticated
+});
+
+export default connect(mapStateToProps, { addItineraryToUserFavs })(
+	Mytinerary
+);

@@ -1,16 +1,32 @@
 import styled from 'styled-components';
 import { shadow } from 'styled';
-import { colors } from '../helpers';
+import { colors, grow } from '../helpers';
 import { Container } from 'reactstrap';
 
 export const MtyWrapper = styled(Container)`
+	position: relative;
 	width: 100%;
 	min-height: 20vh;
-	background: ${colors.white[0]};
+	background: ${props =>
+		props.isfavourite ? colors.success[0] : colors.white[0]};
+	transition: background 600ms ease-in-out;
 	padding: 1rem 0.75rem 0 0.75rem;
 	box-shadow: ${() => shadow('lg')};
 	border-radius: 5px;
 	overflow: hidden;
+`;
+
+export const MtyFavourite = styled.span`
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	font-size: 1.75rem;
+	color: ${props =>
+		props.isfavourite ? colors.success[1] : 'black'};
+	transition: all 600ms ease-in-out;
+	animation: ${props => (props.isfavourite ? grow : 'none')} 400ms
+		ease;
+	z-index: 1;
 `;
 
 export const MtyTitle = styled.div`
@@ -72,5 +88,8 @@ export const ActivitiesToggler = styled.button`
 	font-style: italic;
 	color: white;
 	border: none;
-	background: linear-gradient(${colors.accent[0]}, ${colors.accent[2]});
+	background: linear-gradient(
+		${colors.accent[0]},
+		${colors.accent[2]}
+	);
 `;

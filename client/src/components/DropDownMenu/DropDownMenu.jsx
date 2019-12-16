@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { colors, fadeInLeft } from 'styled';
 /* redux */
 import { connect } from 'react-redux';
-import { logout } from 'redux/actions/auth.actions';
+import { logout } from 'redux/actions/user.actions';
 
 const DropDownWrapper = styled.div`
 	width: 50%;

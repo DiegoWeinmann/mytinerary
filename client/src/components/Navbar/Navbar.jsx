@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+/* REACTSTRAP */
 import {
 	Collapse,
 	Navbar,
@@ -7,8 +8,10 @@ import {
 	Nav,
 	NavItem
 } from 'reactstrap';
+/* COMPONENTS */
 import { FaUserCircle } from 'react-icons/fa';
 import DropDownMenu from 'components/DropDownMenu/DropDownMenu';
+/* REDUX */
 import { connect } from 'react-redux';
 
 class myNavbar extends React.Component {
@@ -69,8 +72,8 @@ class myNavbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	isAuthenticated: state.auth.isAuthenticated,
-	user: state.auth.user
+	isAuthenticated: state.user.isAuthenticated,
+	user: state.user.user
 });
 
 export default connect(mapStateToProps)(myNavbar);
